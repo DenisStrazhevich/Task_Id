@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/head :: head">
+    <title>Welcome</title>
+</head>
+<body>
+<div class="wrapper">
+    <header th:replace="fragments/header :: header"></header>
+    <main>
+        <h1>
+            Application processing system
+        </h1>
+        <h1 sec:authorize="hasRole('ROLE_ANONYMOUS')">
+        Sing in or register for full use of this web-service
+        </h1>
+
+        <div sec:authorize="hasRole('ROLE_USER')"  >
+            <div class="main-control-panel">
+                <p th:if="${not #lists.isEmpty(user_request)}" id="main-paragraph">Your requests</p>
+                <p th:if="${#lists.isEmpty(user_request)}" id="main-paragraph">You don't have any requests</p>
+                <a th:href="@{/add_request}" class="button-link">Add new request</a>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(user_request)}">
+                <div  th:replace="fragments/user_list :: user_list"></div>
+            </div>
+        </div>
+
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+
+            <div class="main-control-panel">
+                <a class="button-link" th:href="@{'/change_status/{status}'(status = 'all')}">All requests</a>
+                <a class="button-link" th:href="@{'/change_status/{status}'(status = 'completed')}">Completed request</a>
+                <a class="button-link" th:href="@{'/change_status/{status}'(status = 'denied')}">Denied request</a>
+            </div>
+            <div class="count-of-requests">
+                <h3>Requests</h3>
+                <div id="count-requests">( <p th:text="${count_request}"></p> )</div>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(list_request)}">
+                <div th:replace="fragments/admin_list :: admin_list"></div>
+            </div>
+
+        </div>
+    </main>
+</div>
+</body>
+</html>

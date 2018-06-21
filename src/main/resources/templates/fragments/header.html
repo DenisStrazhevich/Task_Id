@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<header th:fragment="header">
+    <nav>
+        <ul>
+            <li><a th:href="@{/}" class="navigation-link">Main</a></li>
+            <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}" class="navigation-link">Sign In</a></li>
+            <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registration}" class="navigation-link">Registration</a></li>
+            <li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')"><a th:href="@{/logout}" class="navigation-link">Sign Out</a></li>
+        </ul>
+    </nav>
+</header>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <title>Create your account</title>
+</head>
+<body>
+<main class="content">
+    <h1>CREATE YOUR ACCOUNT</h1>
+    <form method="post" th:object="${user}" th:action="@{/registration}" class="form">
+        <span class="title-input">Username</span>
+        <input class="form-input" name="username" th:name="username" type="text" placeholder="Username"/>
+        <span class="title-input">Password</span>
+        <input class="form-input" name="password" th:name="password" type="password" placeholder="Password"/>
+        <span class="title-input">Confirm Password</span>
+        <input class="form-input" name="confirmPassword" th:name="confirmPassword"  type="password" placeholder="Confirm Password"/>
+
+        <button type="submit" class="button">
+            SIGN UP
+        </button>
+    </form>
+</main>
+
+</body>
+</html>

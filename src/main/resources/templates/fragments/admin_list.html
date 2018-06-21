@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div  th:fragment="admin_list">
+    <table class="line-items-table" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>Request</td>
+            <td>Bid</td>
+            <td>Date</td>
+            <td>Status</td>
+        </tr>
+        <tr th:each="request : ${list_request}">
+            <td th:text="${request.request}">Request</td>
+            <td th:text="${request.bid}">Bid</td>
+            <td th:text="${#dates.format(request.date, 'd MMM yyyy')}">Date</td>
+            <td th:text="${request.status}">Status</td>
+            <td th:if="${request.status eq 'not completed' }"><a class="button-link-admin" th:href="@{'/complete/{id}'(id = ${request.id})}">Complete</a> </td>
+            <td th:if="${request.status eq 'not completed'}"><a class="button-link-admin" th:href="@{'/deny/{id}'(id = ${request.id})}">Deny</a> </td>
+        </tr>
+    </table>
+
+</div>
+</html>

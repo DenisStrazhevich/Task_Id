@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div  th:fragment="user_list">
+    <table class="line-items-table" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>Request</td>
+            <td>Bid</td>
+            <td>Date</td>
+            <td>Status</td>
+        </tr>
+        <tr th:each="user : ${user_request}">
+            <td th:text="${user.request}">Request</td>
+            <td th:text="${user.bid}">Bid</td>
+            <td th:text="${#dates.format(user.date, 'd MMM yyyy')}">Date</td>
+            <td th:text="${user.status}">Status</td>
+        </tr>
+    </table>
+</div>
+</html>

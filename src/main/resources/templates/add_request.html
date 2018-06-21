@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <title>Add</title>
+</head>
+<body>
+<main class="content">
+    <h1>Add request</h1>
+    <form class="form" method="post" th:action="@{/add_request}">
+        <span class="title-input">Request</span>
+        <input class="form-input" id="request" th:name="request" placeholder="Request" maxlength="45"/>
+        <span class="title-input">Bid</span>
+        <input class="form-input" id="bid" th:name="bid" type="text" placeholder="Bid"/>
+        <button type="submit" class="button">
+            Add
+        </button>
+    </form>
+</main>
+</body>
+</html>
