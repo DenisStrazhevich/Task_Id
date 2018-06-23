@@ -85,7 +85,34 @@ public class Application {
         this.status = status;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Application that = (Application) o;
+
+        if (id != that.id) return false;
+        if (Double.compare(that.bid, bid) != 0) return false;
+        if (request != null ? !request.equals(that.request) : that.request != null) return false;
+        if (date != null ? !date.equals(that.date) : that.date != null) return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        return user != null ? user.equals(that.user) : that.user == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (request != null ? request.hashCode() : 0);
+        temp = Double.doubleToLongBits(bid);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        return result;
+    }
 
     @Override
     public String toString() {
